@@ -53,6 +53,9 @@ class AccountContainer extends Component {
       case "description":
         sorted = this.state.transactions.sort((a,b) => a.description.localeCompare(b.description))
         break;
+      case "amount":
+        sorted = this.state.transactions.sort((a,b) => b.amount-a.amount)
+        break;
       default:
         sorted = this.state.transactions.sort((a,b) => a.date.localeCompare(b.date))
     }

@@ -8,8 +8,10 @@ const TransactionsList = (props) => {
   ))
 
   function sortBy(e) {
-    let attribute = e.target.innerText.toLowerCase()
+    let str = e.target.innerText
+    let attribute = str.toLowerCase()
     props.sortTransactions(attribute)
+    str.includes('▼') ? e.target.innerText = str.slice(1) : e.target.innerText = `▼${str}`
   }
 
   return (
@@ -26,7 +28,7 @@ const TransactionsList = (props) => {
             <h3 className="ui center aligned header" onClick={sortBy}>Category</h3>
           </th>
           <th>
-            <h3 className="ui center aligned header">Amount</h3>
+            <h3 className="ui center aligned header" onClick={sortBy}>Amount</h3>
           </th>
           <th>
             <h3 className="ui center aligned header">Remove</h3>
