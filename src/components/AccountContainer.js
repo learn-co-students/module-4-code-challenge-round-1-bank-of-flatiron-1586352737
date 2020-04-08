@@ -20,14 +20,17 @@ class AccountContainer extends Component {
   handleSearchChange = e => {
     this.setState({searchTerm: e.target.value})
   }
-  
+
+  addTransaction = transaction => {
+    this.setState({ transactions: [...this.state.transactions, transaction]})
+  }
   render() {
     const filteredTransaction = this.state.transactions.filter(t => t.description.includes(this.state.searchTerm))
-    console.log(this.state.transactions)
+    // console.log(this.state.transactions)
     return (
       <div>
         <Search onChange={this.handleSearchChange} />
-        <AddTransactionForm />
+        <AddTransactionForm  addTransaction={this.addTransaction}/>
         <TransactionsList transaction={filteredTransaction} />
       </div>
     );

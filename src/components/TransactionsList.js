@@ -3,7 +3,7 @@ import Transaction from "./Transaction";
 
 const TransactionsList = ({transaction}) => {
 
-  console.log(transaction)
+  // console.log(transaction)
   return (
     
     <table className="ui celled striped padded table">
@@ -22,7 +22,7 @@ const TransactionsList = ({transaction}) => {
             <h3 className="ui center aligned header">Amount</h3>
           </th>
         </tr>
-        {transaction.map(transaction =>(<Transaction  transaction={transaction}/>))}
+        {transaction.map(transaction =>(<Transaction key={transaction.id} transaction={transaction}/>))}
       </tbody>
     </table>
   );

@@ -4,7 +4,7 @@ import { tsPropertySignature } from "@babel/types";
 const Transaction = ({transaction}) => {
 
   const {date, description, category, amount} = transaction
-  console.log(transaction)
+  // console.log(transaction)
   return (
     <tr>
       <td>{date}</td>

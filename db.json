@@ -83,6 +83,20 @@
       "description": "Venmo, Pay Roommate for Rent",
       "category": "Housing",
       "amount": -975
+    },
+    {
+      "date": "",
+      "description": "",
+      "category": "",
+      "amount": "",
+      "id": 13
+    },
+    {
+      "date": "2020-04-07",
+      "description": "Paycheck from Barneys",
+      "category": "Income",
+      "amount": "248",
+      "id": 14
     }
   ]
 }
