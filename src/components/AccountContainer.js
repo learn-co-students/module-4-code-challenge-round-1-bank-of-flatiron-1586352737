@@ -4,12 +4,20 @@ import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 
 class AccountContainer extends Component {
+
   render() {
     return (
+      
       <div>
-        <Search />
+        <Search 
+        searchTerm={this.props.searchTerm}
+        changeSearchTerm={this.props.changeSearchTerm}
+        />
         <AddTransactionForm />
-        <TransactionsList />
+        <TransactionsList
+          transactions={this.props.transactions}
+          // transactions={this.functionReturnsArray()}
+       />
       </div>
     );
   }
