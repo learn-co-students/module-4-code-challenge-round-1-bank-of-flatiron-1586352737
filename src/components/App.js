@@ -4,21 +4,21 @@ import "../stylesheets/App.css";
 
 class App extends Component {
 
-  state={
-    transactions: []
+  // state={
+  //   transactions: []
 
-  }
+  // }
 
-  componentDidMount() {
-    fetch("http://localhost:6001/transactions")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            transactions: result
-          })
-          console.log(result)
-        })}
+  // componentDidMount() {
+  //   fetch("http://localhost:6001/transactions")
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         this.setState({
+  //           transactions: result
+  //         })
+  //         console.log(result)
+  //       })}
 
   render() {
     return (
@@ -26,7 +26,7 @@ class App extends Component {
         <div className="ui segment violet inverted">
           <h2>The Royal Bank of Flatiron</h2>
         </div>
-        <AccountContainer transactions={this.state.transactions}/>
+        <AccountContainer/>
       </div>
     );
   }
