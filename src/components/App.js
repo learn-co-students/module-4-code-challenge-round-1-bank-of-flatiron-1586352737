@@ -3,7 +3,7 @@ import AccountContainer from "./AccountContainer";
 import "../stylesheets/App.css";
 
 let originalData = []
-
+let sortOnOff = false
 
 class App extends Component {
 
@@ -99,8 +99,48 @@ class App extends Component {
   
 
   handleSort = (event) => {
-        
-
+           sortOnOff = !sortOnOff
+           const actionToSortWith = event.target.parentElement.dataset.action
+           function compareCategory(a, b) {
+                    const categoryA = a.category
+                    const categoryB = b.category
+                    let comparison = 0
+                    if (categoryA > categoryB) {
+                        comparison = 1
+                    } else if (categoryA < categoryB) {
+                    comparison = -1
+                    }
+                    return comparison
+            }
+            function compareDescription(a, b) {
+              const descriptionA = a.description
+              const descriptionB = b.description
+              let comparison = 0
+              if (descriptionA > descriptionB) {
+                  comparison = 1
+              } else if (descriptionA < descriptionB) {
+              comparison = -1
+              }
+              return comparison
+            }
+            if (sortOnOff) {
+                let sortedArray = [...this.state.allTransactions]
+                if (actionToSortWith === 'category') {
+                    sortedArray.sort(compareCategory)
+                    this.setState({
+                         allTransactions: sortedArray
+                    })
+                } else {
+                    sortedArray.sort(compareDescription)
+                    this.setState({
+                         allTransactions: sortedArray
+                    })
+                }
+            } else {
+                this.setState({
+                     allTransactions: originalData
+                })
+            }
   }
   
   render() {
