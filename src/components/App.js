@@ -9,7 +9,12 @@ class App extends Component {
 
   state = {
     allTransactions: [],
-    searchTerm: ''
+    searchTerm: '',
+    date: '',
+    description: '',
+    category: '',
+    amount: ''
+
   }
 
   componentDidMount() {
@@ -26,13 +31,12 @@ class App extends Component {
   }
 
   sendingArrayDataDown = () => {
-      const lCaseSearch = this.state.searchTerm.toLowerCase()
+      const lowerCaseSearch = this.state.searchTerm.toLowerCase()
       let filteredArray = this.state.allTransactions.filter((single) =>{
-          let lCaseTerm = single.description.toLowerCase()
-           return lCaseTerm.includes(lCaseSearch)
+          let lowerCaseDescr = single.description.toLowerCase()
+           return lowerCaseDescr.includes(lowerCaseSearch)
      })
      return filteredArray
-
   }
 
   handleSearch = (event) => {
@@ -45,10 +49,43 @@ class App extends Component {
   }
  
   handleInputs = (event) => {
-
+        console.log(`${event.target.name} -- ${event.target.value}`)
+        this.setState({ 
+          [event.target.name]: event.target.value
+         })
+        console.log(`${this.state.date} -- ${this.state.description} -- ${this.state.category} -- ${this.state.amount}`)
   }
 
   handleSubmit = (event) => {
+        const newTransaction = {
+              date: this.state.date,
+              description: this.state.description,
+              category: this.state.category,
+              amount: this.state.amount
+        }
+        fetch('http://localhost:6001/transactions', {
+              method: 'POST',
+              headers: {
+                      'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newTransaction)
+            })
+          .then(response => response.json())
+          .then(addedData => {
+                console.log(addedData)
+                originalData.push(addedData)
+                console.log(originalData)
+                this.setState({ 
+                     allTransactions: originalData 
+                })
+ 
+              
+        })
+
+
+    
+
+
 
   }
   
@@ -67,6 +104,11 @@ class App extends Component {
                           handleInputs={this.handleInputs}
                           handleSubmit={this.handleSubmit}
                           handleSearch={this.handleSearch}
+                          date={this.state.date}
+                          description={this.state.description} 
+                          category={this.state.category}
+                          amount={this.state.amount}
+
 
                          />
       </div>

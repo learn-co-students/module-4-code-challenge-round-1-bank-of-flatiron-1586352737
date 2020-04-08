@@ -20,10 +20,12 @@ class AccountContainer extends Component {
         <Search searchTerm={this.props.searchTerm}
                 handleSearch={this.props.handleSearch}
                            />
-        <AddTransactionForm onChange={this.props.onChange}
-                            
-                            
-        
+        <AddTransactionForm handleInputs={this.props.handleInputs}
+                            handleSubmit={this.props.handleSubmit}
+                            date={this.props.date}
+                            category={this.props.category}
+                            description={this.props.description}
+                            amount={this.props.amount}
                             />
         <TransactionsList itemList={this.props.itemList}/>
       </div>
