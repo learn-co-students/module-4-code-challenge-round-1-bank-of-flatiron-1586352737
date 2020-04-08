@@ -1,12 +1,16 @@
 import React from "react";
+import { tsPropertySignature } from "@babel/types";
 
-const Transaction = () => {
+const Transaction = ({transaction}) => {
+
+  const {date, description, category, amount} = transaction
+  // console.log(transaction)
   return (
     <tr>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
+      <td>{date}</td>
+      <td>{description}</td>
+      <td>{category}</td>
+      <td>{amount}</td>
     </tr>
   );
 };

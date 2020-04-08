@@ -1,0 +1,4 @@
+App
+-Account Contanier:: set a state, fetch the data, pass to TransactionList
+ -Transaction list::(functional component-use props) pass data as interpolation variables
+ 
