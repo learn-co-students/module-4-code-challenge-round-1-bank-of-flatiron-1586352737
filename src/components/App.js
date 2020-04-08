@@ -5,7 +5,9 @@ import "../stylesheets/App.css";
 class App extends Component {
 
   state = {
-    transactions: []
+    transactions: [],
+    searchTerm: ""
+
   }
 
   componentDidMount(){
@@ -21,6 +23,25 @@ class App extends Component {
 
 
 
+   
+
+    changeSearchTerm = (newTerm) => {
+      this.setState({
+        searchTerm: newTerm
+      })
+    }
+
+    functionReturnsArray = () => {
+      let filterArray = this.state.transactions.filter((transactionPOJO) => {
+        return transactionPOJO.description.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+      })
+
+      return filterArray
+    }
+
+
+
+
   render() {
     return (
       <div className="ui raised segment">
@@ -28,7 +49,8 @@ class App extends Component {
           <h2>The Royal Bank of Flatiron</h2>
         </div>
         <AccountContainer
-          transactions={this.state.transactions}
+          transactions={this.functionReturnsArray()}
+          changeSearchTerm={this.changeSearchTerm}
          />
       </div>
     );
