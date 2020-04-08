@@ -4,13 +4,17 @@ const Transaction = (props) => {
 
   let {date,description,category,amount} = props.info
 
+  function removeTrans() {
+    props.deleteTransaction(props.info)
+  }
+
   return (
     <tr>
       <td>{date}</td>
       <td>{description}</td>
       <td>{category}</td>
       <td>{amount}</td>
-      <td>Remove</td>
+      <td onClick={removeTrans}>Remove</td>
     </tr>
   );
 };

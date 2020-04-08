@@ -4,7 +4,7 @@ import Transaction from "./Transaction";
 const TransactionsList = (props) => {
 
   let getEach = props.transactions.map(transaction => (
-    <Transaction key={transaction.id} info={transaction}/>
+    <Transaction key={transaction.id} info={transaction} deleteTransaction={props.deleteTransaction}/>
   ))
 
   return (

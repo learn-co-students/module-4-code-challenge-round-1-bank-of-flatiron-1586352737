@@ -30,6 +30,20 @@ class AccountContainer extends Component {
     }))
   }
 
+  deleteTransaction = (badTrans) => {
+    let newList = this.state.transactions.filter(t => {
+      return t.id !== badTrans.id
+    })
+    this.setState({
+      transactions: newList
+    })
+
+    fetch(`http://localhost:6001/transactions/${badTrans.id}`, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'}
+    })
+  }
+
   handleSearch = (e) => {
     this.setState({
       searchInput: e.target.value
@@ -48,7 +62,7 @@ class AccountContainer extends Component {
       <div>
         <Search searchInput={this.state.searchInput} handleSearch={this.handleSearch}/>
         <AddTransactionForm addTransaction={this.addTransaction}/>
-        <TransactionsList transactions={this.filterArray()}/>
+        <TransactionsList transactions={this.filterArray()} deleteTransaction={this.deleteTransaction}/>
       </div>
     );
   }
