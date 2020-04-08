@@ -30,6 +30,21 @@ class App extends Component {
        })
   }
 
+  handleDelete = (event) => {
+    const itemId = event.target.parentElement.dataset.id
+    fetch(`http://localhost:6001/transactions/${itemId}`, {
+           method: 'DELETE'
+          })
+      .then(response => response.json())
+            console.log(originalData)
+            originalData.splice(itemId - 1, 1)
+            console.log(originalData)
+            this.setState({ 
+                 allTransactions: originalData
+            })
+        
+  } 
+
   sendingArrayDataDown = () => {
       const lowerCaseSearch = this.state.searchTerm.toLowerCase()
       let filteredArray = this.state.allTransactions.filter((single) =>{
@@ -78,19 +93,16 @@ class App extends Component {
                 this.setState({ 
                      allTransactions: originalData 
                 })
- 
-              
         })
-
-
-    
-
-
-
   }
   
   
 
+  handleSort = (event) => {
+        
+
+  }
+  
   render() {
 
 
@@ -108,8 +120,8 @@ class App extends Component {
                           description={this.state.description} 
                           category={this.state.category}
                           amount={this.state.amount}
-
-
+                          handleSort={this.handleSort}
+                          handleDelete={this.handleDelete}
                          />
       </div>
     );

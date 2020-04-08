@@ -83,20 +83,6 @@
       "description": "Venmo, Pay Roommate for Rent",
       "category": "Housing",
       "amount": -975
-    },
-    {
-      "date": "2020-04-01",
-      "description": "Sprue Brothers",
-      "category": "Hobby",
-      "amount": "",
-      "id": 13
-    },
-    {
-      "date": "2020-04-06",
-      "description": "Sprue Brothers",
-      "category": "Hobby",
-      "amount": "500",
-      "id": 14
     }
   ]
 }

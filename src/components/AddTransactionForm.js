@@ -37,7 +37,7 @@ class AddTransactionForm extends Component {
               onChange={this.props.handleInputs}
             />
           </div>
-          <button className="ui button" type="submit">
+          <button className="ui violet button" type="submit">
             Add Transaction
           </button>
         </form>

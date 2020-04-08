@@ -20,6 +20,13 @@ class AccountContainer extends Component {
         <Search searchTerm={this.props.searchTerm}
                 handleSearch={this.props.handleSearch}
                            />
+        <br/>
+        <div className="ui animated fade violet button" tabIndex="0" onClick={this.props.handleSort}>
+          <div className="visible content">Sort Transactions by Category or Description</div>
+          <div className="hidden content">
+            <i className="sort icon"></i>Sort Transactions
+          </div>
+        </div>
         <AddTransactionForm handleInputs={this.props.handleInputs}
                             handleSubmit={this.props.handleSubmit}
                             date={this.props.date}
@@ -27,7 +34,9 @@ class AccountContainer extends Component {
                             description={this.props.description}
                             amount={this.props.amount}
                             />
-        <TransactionsList itemList={this.props.itemList}/>
+        <TransactionsList itemList={this.props.itemList}
+                          handleDelete={this.props.handleDelete}
+        />
       </div>
     );
   }
