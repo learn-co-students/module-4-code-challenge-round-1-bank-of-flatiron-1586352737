@@ -44,6 +44,23 @@ class AccountContainer extends Component {
     })
   }
 
+  sortTransactions = (attr) => {
+    let sorted
+    switch(attr) {
+      case "category":
+        sorted = this.state.transactions.sort((a,b) => a.category.localeCompare(b.category))
+        break;
+      case "description":
+        sorted = this.state.transactions.sort((a,b) => a.description.localeCompare(b.description))
+        break;
+      default:
+        sorted = this.state.transactions.sort((a,b) => a.date.localeCompare(b.date))
+    }
+    this.setState({
+      transactions: sorted
+    })
+  }
+
   handleSearch = (e) => {
     this.setState({
       searchInput: e.target.value
@@ -62,7 +79,7 @@ class AccountContainer extends Component {
       <div>
         <Search searchInput={this.state.searchInput} handleSearch={this.handleSearch}/>
         <AddTransactionForm addTransaction={this.addTransaction}/>
-        <TransactionsList transactions={this.filterArray()} deleteTransaction={this.deleteTransaction}/>
+        <TransactionsList transactions={this.filterArray()} sortTransactions={this.sortTransactions} deleteTransaction={this.deleteTransaction}/>
       </div>
     );
   }

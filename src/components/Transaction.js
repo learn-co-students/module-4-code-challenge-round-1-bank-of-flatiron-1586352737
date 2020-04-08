@@ -14,7 +14,7 @@ const Transaction = (props) => {
       <td>{description}</td>
       <td>{category}</td>
       <td>{amount}</td>
-      <td onClick={removeTrans}>Remove</td>
+      <td onClick={removeTrans}>X</td>
     </tr>
   );
 };
