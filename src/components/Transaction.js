@@ -8,6 +8,11 @@ const Transaction = (props) => {
   const amount = props.transaction.amount
   const Id = props.transaction.id
 
+  const arrangeDataDelete = (event) => {
+        props.handleDelete(Id)
+  }
+
+
   return (
     <tr>
       <td>{date}</td>
@@ -16,7 +21,7 @@ const Transaction = (props) => {
       <td>{amount}</td>
       <td>
         <div className="ui animated fade violet button" tabIndex="0" 
-                              data-id={Id} onClick={props.handleDelete}>
+                           onClick={arrangeDataDelete}>
           <div className="visible content">Action</div>
           <div className="hidden content">
                Delete This

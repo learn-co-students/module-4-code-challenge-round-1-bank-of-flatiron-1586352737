@@ -9,12 +9,7 @@ class App extends Component {
 
   state = {
     allTransactions: [],
-    searchTerm: '',
-    date: '',
-    description: '',
-    category: '',
-    amount: ''
-
+    searchTerm: ''
   }
 
   componentDidMount() {
@@ -30,8 +25,7 @@ class App extends Component {
        })
   }
 
-  handleDelete = (event) => {
-    const itemId = event.target.parentElement.dataset.id
+  handleDelete = (itemId) => {
     fetch(`http://localhost:6001/transactions/${itemId}`, {
            method: 'DELETE'
           })
@@ -42,42 +36,28 @@ class App extends Component {
             this.setState({ 
                  allTransactions: originalData
             })
-        
   } 
 
   sendingArrayDataDown = () => {
       const lowerCaseSearch = this.state.searchTerm.toLowerCase()
       let filteredArray = this.state.allTransactions.filter((single) =>{
           let lowerCaseDescr = single.description.toLowerCase()
-           return lowerCaseDescr.includes(lowerCaseSearch)
+          let lowerCaseCatry = single.category.toLowerCase()
+              return lowerCaseDescr.includes(lowerCaseSearch)
+              ||
+              lowerCaseCatry.includes(lowerCaseSearch)
      })
      return filteredArray
   }
 
   handleSearch = (event) => {
       console.log("Searching...")
-      console.log(`${event.target.name} -- ${event.target.value}`)
       this.setState({ 
         [event.target.name]: event.target.value 
        })
-      console.log(this.state.searchTerm)
-  }
- 
-  handleInputs = (event) => {
-        console.log(`${event.target.name} -- ${event.target.value}`)
-        this.setState({ 
-          [event.target.name]: event.target.value
-         })
-        console.log(`${this.state.date} -- ${this.state.description} -- ${this.state.category} -- ${this.state.amount}`)
   }
 
-  handleSubmit = (event) => {
-        const newTransaction = {
-              date: this.state.date,
-              description: this.state.description,
-              category: this.state.category,
-              amount: this.state.amount
-        }
+  handleSubmit = (newTransaction) => {
         fetch('http://localhost:6001/transactions', {
               method: 'POST',
               headers: {
@@ -96,11 +76,8 @@ class App extends Component {
         })
   }
   
-  
-
-  handleSort = (event) => {
+  handleSort = (action) => {
            sortOnOff = !sortOnOff
-           const actionToSortWith = event.target.parentElement.dataset.action
            function compareCategory(a, b) {
                     const categoryA = a.category
                     const categoryB = b.category
@@ -125,7 +102,7 @@ class App extends Component {
             }
             if (sortOnOff) {
                 let sortedArray = [...this.state.allTransactions]
-                if (actionToSortWith === 'category') {
+                if (action === 'category') {
                     sortedArray.sort(compareCategory)
                     this.setState({
                          allTransactions: sortedArray
@@ -145,7 +122,6 @@ class App extends Component {
   
   render() {
 
-
     return (
       <div className="ui raised segment">
         <div className="ui segment violet inverted">
@@ -153,13 +129,8 @@ class App extends Component {
         </div>
         <AccountContainer itemList={this.sendingArrayDataDown()}
                           searchTerm={this.state.searchTerm}
-                          handleInputs={this.handleInputs}
                           handleSubmit={this.handleSubmit}
                           handleSearch={this.handleSearch}
-                          date={this.state.date}
-                          description={this.state.description} 
-                          category={this.state.category}
-                          amount={this.state.amount}
                           handleSort={this.handleSort}
                           handleDelete={this.handleDelete}
                          />
